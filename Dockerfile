@@ -19,5 +19,5 @@ RUN wget http://download.osgeo.org/gdal/2.2.2/gdal-2.2.2.tar.gz --output-documen
         --with-spatialite && \
     make && \
     make install && \
-    rm --force --recursive /tmp/gdal-2.2.2 && \
-    pip install --disable-pip-version-check --no-cache-dir GDAL==2.2.2
+    pip install --disable-pip-version-check --no-cache-dir GDAL==2.2.2 && \
+    rm --force --recursive /tmp/gdal-2.2.2
