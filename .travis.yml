@@ -9,6 +9,8 @@ env:
 install:
 - docker build .
 
+script: []
+
 deploy:
 - provider: script
   script: publish-docker
