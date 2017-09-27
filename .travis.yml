@@ -14,12 +14,12 @@ script:
 
 deploy:
 - provider: script
-  script: publish-docker
+  script: ./publish-docker
   on:
     repo: camptocamp/docker-python-gis
     tags: true
 - provider: script
-  script: publish-docker
+  script: ./publish-docker
   on:
     repo: camptocamp/docker-python-gis
     all_branches: true
