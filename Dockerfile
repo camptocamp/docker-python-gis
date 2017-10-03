@@ -16,8 +16,10 @@ RUN wget http://download.osgeo.org/gdal/2.2.2/gdal-2.2.2.tar.gz --output-documen
         --with-openjpeg \
         --with-pg \
         --with-curl \
-        --with-spatialite && \
-    make && \
+        --with-spatialite \
+        --disable-static && \
+    make -j`grep -c ^processor /proc/cpuinfo` && \
     make install && \
+    bash -c "strip /usr/lib/libgdal.so.*.*.* /usr/bin/ogr* /usr/bin/gdal* || true" &&  \
     pip install --disable-pip-version-check --no-cache-dir GDAL==2.2.2 && \
-    rm --force --recursive /tmp/gdal-2.2.2
+    rm --force --recursive /tmp/gdal-2.2.2 /tmp/gdal.tar.gz
