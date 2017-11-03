@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.6-jessie
 LABEL maintainer "info@camptocamp.org"
 
 RUN wget http://download.osgeo.org/gdal/2.2.2/gdal-2.2.2.tar.gz --output-document=/tmp/gdal.tar.gz && \
