@@ -13,5 +13,6 @@ then
     docker tag camptocamp/${IMAGE}:latest camptocamp/${IMAGE}:${TRAVIS_BRANCH}
     docker push camptocamp/${IMAGE}:${TRAVIS_BRANCH}
 else
-    docker push camptocamp/${IMAGE}:latest
+    echo "Building master should not happen"
+    exit 1
 fi
