@@ -1,9 +1,10 @@
 FROM python:3.6-stretch
 LABEL maintainer "info@camptocamp.org"
 
-RUN wget http://download.osgeo.org/gdal/2.2.2/gdal-2.2.2.tar.gz --output-document=/tmp/gdal.tar.gz && \
+ENV GDAL_VERSION 2.2.3
+RUN wget http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz --output-document=/tmp/gdal.tar.gz && \
     tar --extract --file=/tmp/gdal.tar.gz --directory=/tmp && \
-    cd /tmp/gdal-2.2.2 && \
+    cd /tmp/gdal-${GDAL_VERSION} && \
     ./configure \
         --prefix=/usr \
         --with-python \
@@ -21,5 +22,5 @@ RUN wget http://download.osgeo.org/gdal/2.2.2/gdal-2.2.2.tar.gz --output-documen
     make -j`grep -c ^processor /proc/cpuinfo` && \
     make install && \
     bash -c "strip /usr/lib/libgdal.so.*.*.* /usr/bin/ogr* /usr/bin/gdal* || true" &&  \
-    pip install --disable-pip-version-check --no-cache-dir GDAL==2.2.2 && \
-    rm --force --recursive /tmp/gdal-2.2.2 /tmp/gdal.tar.gz
+    pip install --disable-pip-version-check --no-cache-dir GDAL==${GDAL_VERSION} && \
+    rm --force --recursive /tmp/gdal-${GDAL_VERSION} /tmp/gdal.tar.gz
