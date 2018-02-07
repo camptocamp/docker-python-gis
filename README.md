@@ -1,5 +1,5 @@
 # Docker Image with Python 3.x and GIS dependencies
 
-Current branch: 3.6-stretch.
-Old branch: 3.6.
-Special branch: 3.5 (for testing c2cwsgiutils).
+* Current branch: 3.6-stretch [![Requirements Status](https://requires.io/github/camptocamp/docker-python-gis/requirements.svg?branch=3.5)](https://requires.io/github/camptocamp/docker-python-gis/requirements/?branch=3.6-stretch) [![Build Status](https://travis-ci.org/camptocamp/docker-python-gis.svg?branch=3.6-stretch)](https://travis-ci.org/camptocamp/docker-python-gis)
+* Old branch: 3.6 [![Requirements Status](https://requires.io/github/camptocamp/docker-python-gis/requirements.svg?branch=3.5)](https://requires.io/github/camptocamp/docker-python-gis/requirements/?branch=3.6) [![Build Status](https://travis-ci.org/camptocamp/docker-python-gis.svg?branch=3.6)](https://travis-ci.org/camptocamp/docker-python-gis)
+* Special branch: 3.5 (for testing c2cwsgiutils) [![Requirements Status](https://requires.io/github/camptocamp/docker-python-gis/requirements.svg?branch=3.5)](https://requires.io/github/camptocamp/docker-python-gis/requirements/?branch=3.5) [![Build Status](https://travis-ci.org/camptocamp/docker-python-gis.svg?branch=3.5)](https://travis-ci.org/camptocamp/docker-python-gis)
