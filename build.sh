@@ -4,6 +4,7 @@ GDAL_VERSION=$(sed -ne 's/GDAL==\(.*\)/\1/p' /tmp/requirements.txt)
 
 wget http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz --output-document=/tmp/gdal.tar.gz
 tar --extract --file=/tmp/gdal.tar.gz --directory=/tmp
+
 cd /tmp/gdal-${GDAL_VERSION}
 ./configure \
     --prefix=/usr \
@@ -19,8 +20,11 @@ cd /tmp/gdal-${GDAL_VERSION}
     --with-curl \
     --with-spatialite \
     --disable-static
+
 make -j`grep -c ^processor /proc/cpuinfo`
 make install
-bash -c "strip /usr/lib/libgdal.so.*.*.* /usr/bin/ogr* /usr/bin/gdal* || true" &&  \
+
+strip /usr/lib/libgdal.so.*.*.* /usr/bin/ogr* /usr/bin/gdal* || true
+
 pip install --disable-pip-version-check --no-cache-dir -r /tmp/requirements.txt
 rm --force --recursive /tmp/gdal-${GDAL_VERSION} /tmp/gdal.tar.gz /tmp/requirements.txt /tmp/build.sh
