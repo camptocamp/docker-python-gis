@@ -1,4 +1,4 @@
-FROM python:3.6-stretch
+FROM ubuntu:18.04
 LABEL maintainer "info@camptocamp.org"
 
 COPY requirements.txt build.sh /tmp/
