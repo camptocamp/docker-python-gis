@@ -7,7 +7,7 @@ NB_CPUS=`grep -c ^processor /proc/cpuinfo`
 # install the python packages
 apt update
 apt install -y --no-install-recommends python3.6 python3-pip python3-dev python3-setuptools python3-wheel \
-                                       libpython3.6 curl build-essential pkg-config
+                                       libpython3.6 curl build-essential python3-pkgconfig
 ln -s pip3 /usr/bin/pip
 ln -s python3 /usr/bin/python
 
