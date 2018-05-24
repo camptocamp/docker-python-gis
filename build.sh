@@ -26,5 +26,6 @@ make install
 
 strip /usr/lib/libgdal.so.*.*.* /usr/bin/ogr* /usr/bin/gdal* || true
 
+export CPLUS_INCLUDE_PATH=$PWD/port
 pip install --disable-pip-version-check --no-cache-dir -r /tmp/requirements.txt
 rm --force --recursive /tmp/gdal-${GDAL_VERSION} /tmp/gdal.tar.gz /tmp/requirements.txt /tmp/build.sh
