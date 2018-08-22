@@ -18,7 +18,7 @@ DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends \
     libspatialite7 libopenjp2-7 libwebp6
 
 # install the packages needed to build (will be removed at the end)
-BUILD_PKG="libcurl4-openssl-dev libpq-dev libexpat1-dev libkml-dev libspatialite-dev \
+BUILD_PKG="libcurl4-openssl-dev libpq-dev libkml-dev libspatialite-dev \
     libopenjp2-7-dev libspatialite-dev libwebp-dev"
 DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends ${BUILD_PKG}
 
