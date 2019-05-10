@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-GDAL_VERSION=$(sed -ne 's/GDAL==\(.*\)/\1/p' /tmp/requirements.txt)
+GDAL_VERSION=$(sed -ne 's/GDAL==\([0-9\.]*\).*/\1/p' /tmp/requirements.txt)
 
 wget http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz --output-document=/tmp/gdal.tar.gz
 tar --extract --file=/tmp/gdal.tar.gz --directory=/tmp
