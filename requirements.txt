@@ -1,1 +1,1 @@
-GDAL==2.4.0 # rq.filter: <3
+GDAL==3.0.4 # rq.filter: <3
