@@ -1,0 +1,41 @@
+---
+
+name: Rebuild
+
+on:
+  schedule:
+    - cron: "30 1 * * *"
+
+jobs:
+  main:
+    runs-on: ubuntu-18.04
+    name: Rebuild
+    timeout-minutes: 2
+
+    strategy:
+      matrix:
+        branch:
+          - master
+
+    env:
+      SUMMON_PROVIDER: /usr/local/bin/gopass
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: ${{ matrix.branch }}
+      - run: docker build --tag=camptocamp/daily .
+
+      - uses: camptocamp/initialise-gopass-summon-action@v1
+        with:
+          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
+          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
+        if: github.repository == 'camptocamp/docker-daily'
+      - run: |
+          summon --yaml '
+            TOKEN: !var gs/ci/dockerhub/token
+          ' bash -c 'envsubst < docker-config.json.tmpl > ~/.docker/config.json'
+        if: github.repository == 'camptocamp/docker-daily'
+      - name: Publish to Docker hub
+        run: ci/publish ${{ matrix.branch }}
+        if: github.repository == 'camptocamp/docker-daily'
