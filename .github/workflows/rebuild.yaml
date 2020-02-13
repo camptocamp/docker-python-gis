@@ -15,10 +15,8 @@ jobs:
     strategy:
       matrix:
         branch:
-          - 3.6-ubuntu18.04
-          - 3.6-stretch
-          - '3.6'
-          - '3.5'
+          - 3.7-ubuntu20.04
+          - 3.7-buster
 
     env:
       SUMMON_PROVIDER: /usr/local/bin/gopass
