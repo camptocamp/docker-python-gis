@@ -1,4 +1,4 @@
-FROM debian:buster AS base
+FROM ubuntu:20.04 AS base
 LABEL maintainer "info@camptocamp.org"
 
 RUN \
@@ -13,8 +13,8 @@ FROM base AS builder
 
 RUN \
     apt-get update && \
-    apt-get install --assume-yes --no-install-recommends libcurl4-openssl-dev libpq-dev libkml-dev \
-        libspatialite-dev libopenjp2-7-dev libspatialite-dev libwebp-dev librasterlite2-dev python3-pkgconfig && \
+    apt-get install --assume-yes --no-install-recommends libcurl4-openssl-dev libproj-dev libpq-dev libkml-dev \
+        libspatialite-dev libopenjp2-7-dev libspatialite-dev libwebp-dev python3-pkgconfig && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/*
 
@@ -42,8 +42,9 @@ RUN ./configure \
         --with-spatialite \
         --with-openjpeg \
         --with-webp \
-        --disable-static && \
-    make -j$(grep -c ^processor /proc/cpuinfo)
+        --with-cpp14 \
+        --disable-static
+RUN make -j$(grep -c ^processor /proc/cpuinfo)
 RUN make -j$(grep -c ^processor /proc/cpuinfo) install
 
 # Remove debug symbols
@@ -55,7 +56,7 @@ RUN \
     apt-get update && \
     apt-get install --assume-yes --no-install-recommends python3 python3-pip python3-dev python3-setuptools \
         python3-wheel libpq5 libexpat1 libkmlconvenience1 libkmlregionator1 libkmlxsd1 libspatialite7 \
-        libopenjp2-7 libwebp6 librasterlite2-1 && \
+        libopenjp2-7 libwebp6 libproj15 && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/*
 
