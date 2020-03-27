@@ -27,7 +27,7 @@ jobs:
       - run: |
           summon --yaml '
             TOKEN: !var gs/ci/dockerhub/token
-          ' bash -c 'envsubst < docker-config.json.tmpl > ~/.docker/config.json'
+          ' bash -c 'envsubst < ci/docker-config.json.tmpl > ~/.docker/config.json'
         if: github.repository == 'camptocamp/docker-python-gis'
       - name: Publish to Docker hub
         run: ci/publish ubuntu-18.04
