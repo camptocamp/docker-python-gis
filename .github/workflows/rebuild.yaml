@@ -31,12 +31,12 @@ jobs:
         with:
           ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
           github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
-        if: github.repository == 'camptocamp/docker-daily'
+        if: github.repository == 'camptocamp/docker-python-gis'
       - run: |
           summon --yaml '
             TOKEN: !var gs/ci/dockerhub/token
           ' bash -c 'envsubst < docker-config.json.tmpl > ~/.docker/config.json'
-        if: github.repository == 'camptocamp/docker-daily'
+        if: github.repository == 'camptocamp/docker-python-gis'
       - name: Publish to Docker hub
         run: ci/publish ${{ matrix.branch }}
-        if: github.repository == 'camptocamp/docker-daily'
+        if: github.repository == 'camptocamp/docker-python-gis'
