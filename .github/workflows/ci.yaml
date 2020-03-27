@@ -24,6 +24,8 @@ jobs:
           ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
           github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
         if: github.repository == 'camptocamp/docker-python-gis'
+      - run: mkdir -p ~/.docker
+        if: github.repository == 'camptocamp/docker-python-gis'
       - run: |
           summon --yaml '
             TOKEN: !var gs/ci/dockerhub/token
