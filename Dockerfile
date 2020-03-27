@@ -13,8 +13,9 @@ FROM base AS builder
 
 RUN \
     apt-get update && \
-    apt-get install --assume-yes --no-install-recommends libcurl4-openssl-dev libproj-dev libpq-dev libkml-dev \
-        libspatialite-dev libopenjp2-7-dev libspatialite-dev libwebp-dev python3-pkgconfig && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
+        libcurl4-openssl-dev libproj-dev libpq-dev libkml-dev libspatialite-dev libopenjp2-7-dev \
+        libspatialite-dev libwebp-dev python3-pkgconfig && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/*
 
