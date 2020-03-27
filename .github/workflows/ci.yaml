@@ -15,3 +15,17 @@ jobs:
       - uses: actions/checkout@v1
       - run: docker build .
       - run: docker build --target=runner --tag=camptocamp/python-gis .
+
+      - uses: camptocamp/initialise-gopass-summon-action@v1
+        with:
+          ci-gpg-private-key: ${{secrets.CI_GPG_PRIVATE_KEY}}
+          github-gopass-ci-token: ${{secrets.GITHUB_GOPASS_CI_TOKEN}}
+        if: github.repository == 'camptocamp/docker-python-gis'
+      - run: |
+          summon --yaml '
+            TOKEN: !var gs/ci/dockerhub/token
+          ' bash -c 'envsubst < docker-config.json.tmpl > ~/.docker/config.json'
+        if: github.repository == 'camptocamp/docker-python-gis'
+      - name: Publish to Docker hub
+        run: ci/publish ubuntu-18.04
+        if: github.repository == 'camptocamp/docker-python-gis'
