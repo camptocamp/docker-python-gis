@@ -55,9 +55,9 @@ FROM base AS runner
 
 RUN \
     apt-get update && \
-    apt-get install --assume-yes --no-install-recommends python3 python3-pip python3-dev python3-setuptools \
-        python3-wheel libpq5 libexpat1 libkmlconvenience1 libkmlregionator1 libkmlxsd1 libspatialite7 \
-        libopenjp2-7 libwebp6 libproj15 && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends python3-pip \
+        python3-setuptools python3-wheel libpq5 libexpat1 libkmlconvenience1 libkmlregionator1 libkmlxsd1 \
+        libspatialite7 libopenjp2-7 libwebp6 libproj15 && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/*
 
