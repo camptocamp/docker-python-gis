@@ -11,6 +11,9 @@ jobs:
     name: Continuous integration
     timeout-minutes: 30
 
+    env:
+      SUMMON_PROVIDER: /usr/local/bin/gopass
+
     steps:
       - uses: actions/checkout@v1
       - run: docker build .
