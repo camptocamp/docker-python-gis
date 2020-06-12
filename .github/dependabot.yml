@@ -1,0 +1,16 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: '02:00'
+  open-pull-requests-limit: 99
+  target-branch: 3.7-buster
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: '02:00'
+  open-pull-requests-limit: 99
+  target-branch: 3.7-ubuntu20.04
